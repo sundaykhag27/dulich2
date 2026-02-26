@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tin tức du lịch - DU LỊCH LÂM THƯ</title>
+
+    <!-- Google Fonts: Be Vietnam Pro -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: { DEFAULT: "#059669" },
+              accent: { DEFAULT: "#f97316" },
+            },
+            fontFamily: {
+              bevn: ["Be Vietnam Pro", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="bg-white text-slate-900 font-bevn relative overflow-x-hidden">
+    <!-- Hoa vàng rơi (phủ toàn trang) -->
+    <div id="fallingPetals" class="falling-petals" aria-hidden="true"></div>
+    <!-- Header (shared) -->
+    <header
+      id="siteHeader"
+      class="fixed inset-x-0 top-0 z-40 bg-white/95 backdrop-blur shadow-sm"
+    >
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0">
+        <div class="flex items-center justify-between py-3 gap-4">
+          <!-- Logo -->
+          <a
+            href="index.html#home"
+            class="flex items-center gap-2 text-primary font-semibold"
+          >
+            <div
+              class="h-9 w-9 rounded-full bg-primary text-white flex items-center justify-center text-lg font-semibold shadow-md"
+            >
+              LT
+            </div>
+            <div class="leading-tight">
+              <div class="text-sm sm:text-base tracking-wide uppercase">
+                DU LỊCH LÂM THƯ
+              </div>
+              <div class="text-[11px] text-slate-500">
+                Tour · Khách sạn · Combo
+              </div>
+            </div>
+          </a>
+
+          <!-- Desktop Nav -->
+          <nav
+            class="hidden lg:flex items-center justify-center gap-5 text-xs sm:text-sm font-medium text-slate-700"
+          >
+            <a href="index.html#home" class="nav-link">Trang chủ</a>
+            <a href="tours.html" class="nav-link">Tour</a>
+            <a href="hotels.html" class="nav-link">Khách sạn</a>
+            <a href="services.html" class="nav-link">Dịch vụ</a>
+            <a href="news.html" class="nav-link">Tin tức</a>
+            <a href="about.html" class="nav-link">Giới thiệu</a>
+          </nav>
+
+          <!-- CTA + Mobile button -->
+          <div class="flex items-center gap-2">
+            <a
+              href="tel:19001234"
+              class="hidden sm:inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 text-primary px-3 py-1.5 text-xs font-semibold cta-soft"
+            >
+              <i class="fa-solid fa-phone text-[11px]"></i>
+              <span>Hotline: 1900 1234</span>
+            </a>
+            <a
+              href="index.html#newsletter"
+              class="hidden md:inline-flex items-center gap-2 rounded-full bg-accent text-white px-4 py-2 text-xs sm:text-sm font-semibold cta-main"
+            >
+              <i class="fa-solid fa-ticket text-[11px]"></i>
+              <span>Đăng ký ưu đãi</span>
+            </a>
+
+            <!-- Mobile menu button -->
+            <button
+              id="mobileMenuToggle"
+              class="inline-flex lg:hidden items-center justify-center w-9 h-9 rounded-full border border-slate-300 text-slate-700 bg-white cta-soft"
+              aria-label="Mở menu"
+            >
+              <i class="fa-solid fa-bars text-sm"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div
+        id="mobileMenu"
+        class="lg:hidden border-t border-slate-100 bg-white/98 backdrop-blur-md max-h-0 overflow-hidden transition-all duration-300"
+      >
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0 py-3 space-y-2 text-sm">
+          <a href="index.html#home" class="block nav-link-mobile">Trang chủ</a>
+          <a href="tours.html" class="block nav-link-mobile">Tour</a>
+          <a href="hotels.html" class="block nav-link-mobile">Khách sạn</a>
+          <a href="services.html" class="block nav-link-mobile">Dịch vụ</a>
+          <a href="news.html" class="block nav-link-mobile">Tin tức</a>
+          <a href="about.html" class="block nav-link-mobile">Giới thiệu</a>
+          <a
+            href="index.html#newsletter"
+            class="inline-flex items-center gap-2 rounded-full bg-accent text-white px-4 py-2 text-xs font-semibold cta-main mt-2"
+          >
+            <i class="fa-solid fa-ticket text-[11px]"></i>
+            <span>Đăng ký ưu đãi</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="pt-20 sm:pt-24 pb-14 sm:pb-16">
+      <!-- Hero -->
+      <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0 mb-8">
+        <div
+          class="relative rounded-3xl overflow-hidden shadow-xl min-h-[220px] flex items-center justify-center text-white"
+        >
+          <div
+            class="absolute inset-0 bg-cover bg-center"
+            style="
+              background-image: url('images/news-hero.jpg');
+            "
+          ></div>
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-slate-900/85 via-slate-900/65 to-primary/60"
+          ></div>
+          <div class="relative z-10 px-6 sm:px-10 py-8 sm:py-10 max-w-2xl">
+            <p class="text-xs uppercase tracking-[0.25em] text-emerald-200/90 mb-1">
+              Tin tức &amp; cảm hứng du lịch
+            </p>
+            <h1 class="text-2xl sm:text-3xl font-semibold leading-snug mb-2">
+              Cập nhật tin khuyến mãi, cảm hứng và sự kiện du lịch Việt Nam
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured + categories -->
+      <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0">
+        <div class="grid lg:grid-cols-3 gap-6 mb-8">
+          <!-- Featured post -->
+          <article
+            class="lg:col-span-2 bg-slate-50 rounded-3xl overflow-hidden shadow-soft"
+          >
+            <div class="relative h-56 sm:h-64 overflow-hidden">
+              <img
+                src="images/news-featured.jpg"
+                alt="Featured travel"
+                class="w-full h-full object-cover"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent"
+              ></div>
+              <div class="absolute bottom-3 left-4 right-4 text-white text-xs">
+                <span
+                  class="inline-flex items-center gap-1 rounded-full bg-accent px-3 py-1 text-[11px] font-semibold mb-2"
+                >
+                  <i class="fa-solid fa-bolt text-[10px]"></i>
+                  Tin khuyến mãi
+                </span>
+                <h2 class="text-base sm:text-lg font-semibold mb-1">
+                  Ưu đãi Hè 2026: Combo bay nội địa + khách sạn giảm đến 30%
+                </h2>
+                <p class="text-[11px] sm:text-xs text-slate-100">
+                  Áp dụng cho các điểm đến hot như Đà Nẵng, Nha Trang, Phú Quốc,
+                  Quy Nhơn với nhiều khung giờ linh hoạt.
+                </p>
+              </div>
+            </div>
+            <div class="p-4 sm:p-5 text-xs text-slate-600">
+              <p class="mb-2">
+                Đặt combo bay + khách sạn trong giai đoạn từ 01/04/2026 đến
+                31/08/2026 sẽ nhận ưu đãi giảm giá trực tiếp trên tổng hóa đơn,
+                kèm nhiều quyền lợi đi kèm như đưa đón sân bay, ăn sáng, và dịch
+                vụ spa.
+              </p>
+              <a
+                href="#"
+                class="inline-flex items-center gap-1 text-primary font-semibold"
+              >
+                Xem chi tiết ưu đãi
+                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Category list -->
+          <aside class="bg-slate-50 rounded-3xl p-4 sm:p-5 shadow-soft text-xs">
+            <h3 class="text-sm font-semibold text-slate-900 mb-3">
+              Phân loại tin tức
+            </h3>
+            <ul class="space-y-2 text-slate-700">
+              <li class="flex items-center justify-between">
+                <span class="inline-flex items-center gap-2">
+                  <i class="fa-solid fa-tags text-primary text-[11px]"></i>
+                  Tin khuyến mãi
+                </span>
+                <span class="text-[11px] text-slate-400">12</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span class="inline-flex items-center gap-2">
+                  <i class="fa-solid fa-compass text-primary text-[11px]"></i>
+                  Cảm hứng du lịch
+                </span>
+                <span class="text-[11px] text-slate-400">18</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span class="inline-flex items-center gap-2">
+                  <i class="fa-solid fa-location-dot text-primary text-[11px]"></i>
+                  Thông tin điểm đến
+                </span>
+                <span class="text-[11px] text-slate-400">24</span>
+              </li>
+              <li class="flex items-center justify-between">
+                <span class="inline-flex items-center gap-2">
+                  <i class="fa-solid fa-fireworks text-primary text-[11px]"></i>
+                  Sự kiện lễ hội
+                </span>
+                <span class="text-[11px] text-slate-400">9</span>
+              </li>
+            </ul>
+          </aside>
+        </div>
+
+        <!-- Grid bài viết -->
+        <div class="grid md:grid-cols-3 gap-5 text-xs">
+          <!-- Promotion -->
+          <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-soft">
+            <div class="h-36 overflow-hidden">
+              <img src="images/region-north.jpg" alt="Tour Miền Bắc" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="p-3 sm:p-4">
+            <span
+              class="inline-flex items-center gap-1 rounded-full bg-accent/10 text-accent px-2.5 py-1 text-[11px] font-medium mb-2"
+            >
+              <i class="fa-solid fa-tags text-[10px]"></i>
+              Tin khuyến mãi
+            </span>
+            <h3 class="font-semibold text-slate-900 mb-1">
+              Flash sale tour Miền Bắc 3N2Đ chỉ từ 3.990.000 đ
+            </h3>
+            <p class="text-slate-600">
+              Áp dụng cho các hành trình Hạ Long, Ninh Bình, Sapa khởi hành
+              trong tháng 5 và 6/2026.
+            </p>
+            </div>
+          </article>
+
+          <!-- Inspiration -->
+          <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-soft">
+            <div class="h-36 overflow-hidden">
+              <img src="images/region-south.jpg" alt="Phú Quốc" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="p-3 sm:p-4">
+            <span
+              class="inline-flex items-center gap-1 rounded-full bg-emerald-50 text-primary px-2.5 py-1 text-[11px] font-medium mb-2"
+            >
+              <i class="fa-solid fa-compass text-[10px]"></i>
+              Cảm hứng du lịch
+            </span>
+            <h3 class="font-semibold text-slate-900 mb-1">
+              7 trải nghiệm nhất định phải thử ở Phú Quốc
+            </h3>
+            <p class="text-slate-600">
+              Từ ngắm hoàng hôn trên biển, lặn ngắm san hô đến khám phá chợ đêm
+              Phú Quốc.
+            </p>
+            </div>
+          </article>
+
+          <!-- Destination info -->
+          <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-soft">
+            <div class="h-36 overflow-hidden">
+              <img src="images/tour-5.jpg" alt="Điểm du lịch" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="p-3 sm:p-4">
+            <span
+              class="inline-flex items-center gap-1 rounded-full bg-blue-50 text-blue-700 px-2.5 py-1 text-[11px] font-medium mb-2"
+            >
+              <i class="fa-solid fa-location-dot text-[10px]"></i>
+              Thông tin điểm đến
+            </span>
+            <h3 class="font-semibold text-slate-900 mb-1">
+              Cập nhật giá vé tham quan các điểm du lịch nổi tiếng 2026
+            </h3>
+            <p class="text-slate-600">
+              Tổng hợp giá vé mới nhất tại Hạ Long, Fansipan, Bà Nà Hills, VinWonders...
+            </p>
+            </div>
+          </article>
+
+          <!-- Festival -->
+          <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-soft">
+            <div class="h-36 overflow-hidden">
+              <img src="images/region-central.jpg" alt="Đà Nẵng" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="p-3 sm:p-4">
+            <span
+              class="inline-flex items-center gap-1 rounded-full bg-purple-50 text-purple-700 px-2.5 py-1 text-[11px] font-medium mb-2"
+            >
+              <i class="fa-solid fa-fireworks text-[10px]"></i>
+              Sự kiện lễ hội
+            </span>
+            <h3 class="font-semibold text-slate-900 mb-1">
+              Lịch bắn pháo hoa quốc tế Đà Nẵng 2026
+            </h3>
+            <p class="text-slate-600">
+              Các đêm thi đấu, chủ đề từng đêm và gợi ý điểm xem pháo hoa đẹp.
+            </p>
+            </div>
+          </article>
+
+          <!-- Inspiration -->
+          <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-soft">
+            <div class="h-36 overflow-hidden">
+              <img src="images/tour-6.jpg" alt="Miền Trung" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="p-3 sm:p-4">
+            <span
+              class="inline-flex items-center gap-1 rounded-full bg-emerald-50 text-primary px-2.5 py-1 text-[11px] font-medium mb-2"
+            >
+              <i class="fa-solid fa-compass text-[10px]"></i>
+              Cảm hứng du lịch
+            </span>
+            <h3 class="font-semibold text-slate-900 mb-1">
+              Gợi ý lịch trình 7 ngày khám phá miền Trung
+            </h3>
+            <p class="text-slate-600">
+              Kết hợp Đà Nẵng, Huế, Hội An với nhịp độ vừa phải cho gia đình có
+              trẻ nhỏ.
+            </p>
+            </div>
+          </article>
+
+          <!-- Destination info -->
+          <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-soft">
+            <div class="h-36 overflow-hidden">
+              <img src="images/tour-2.jpg" alt="Sapa" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="p-3 sm:p-4">
+            <span
+              class="inline-flex items-center gap-1 rounded-full bg-blue-50 text-blue-700 px-2.5 py-1 text-[11px] font-medium mb-2"
+            >
+              <i class="fa-solid fa-location-dot text-[10px]"></i>
+              Thông tin điểm đến
+            </span>
+            <h3 class="font-semibold text-slate-900 mb-1">
+              Mùa đẹp nhất để đi Sapa, Hà Giang, Mộc Châu
+            </h3>
+            <p class="text-slate-600">
+              Thời điểm lý tưởng cho săn mây, hoa cải, hoa mận và mùa lúa chín.
+            </p>
+            </div>
+          </article>
+
+          <!-- Thêm tin tức -->
+          <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-soft">
+            <div class="h-36 overflow-hidden">
+              <img src="images/combo-1.jpg" alt="Combo bay" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="p-3 sm:p-4">
+            <span class="inline-flex items-center gap-1 rounded-full bg-accent/10 text-accent px-2.5 py-1 text-[11px] font-medium mb-2">
+              <i class="fa-solid fa-tags text-[10px]"></i> Tin khuyến mãi
+            </span>
+            <h3 class="font-semibold text-slate-900 mb-1">Combo bay nội địa giảm đến 25% tháng 3–4/2026</h3>
+            <p class="text-slate-600">Áp dụng tuyến Hà Nội – Đà Nẵng, Sài Gòn – Phú Quốc, đặt trước 30 ngày.</p>
+            </div>
+          </article>
+          <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-soft">
+            <div class="h-36 overflow-hidden">
+              <img src="images/tour-3.jpg" alt="Homestay Sapa" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="p-3 sm:p-4">
+            <span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 text-primary px-2.5 py-1 text-[11px] font-medium mb-2">
+              <i class="fa-solid fa-compass text-[10px]"></i> Cảm hứng du lịch
+            </span>
+            <h3 class="font-semibold text-slate-900 mb-1">5 homestay view đẹp ở Sapa và Mộc Châu</h3>
+            <p class="text-slate-600">Gợi ý chỗ ở view ruộng bậc thang, núi mây cho chuyến đi nhóm bạn.</p>
+            </div>
+          </article>
+          <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-soft">
+            <div class="h-36 overflow-hidden">
+              <img src="images/tour-5.jpg" alt="Bà Nà" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="p-3 sm:p-4">
+            <span class="inline-flex items-center gap-1 rounded-full bg-blue-50 text-blue-700 px-2.5 py-1 text-[11px] font-medium mb-2">
+              <i class="fa-solid fa-location-dot text-[10px]"></i> Thông tin điểm đến
+            </span>
+            <h3 class="font-semibold text-slate-900 mb-1">Cập nhật giá vé Bà Nà Hills, VinWonders 2026</h3>
+            <p class="text-slate-600">Bảng giá vé cáp treo, combo và các gói ưu đãi mới nhất.</p>
+            </div>
+          </article>
+          <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-soft">
+            <div class="h-36 overflow-hidden">
+              <img src="images/tour-4.jpg" alt="Hà Giang" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="p-3 sm:p-4">
+            <span class="inline-flex items-center gap-1 rounded-full bg-purple-50 text-purple-700 px-2.5 py-1 text-[11px] font-medium mb-2">
+              <i class="fa-solid fa-fireworks text-[10px]"></i> Sự kiện lễ hội
+            </span>
+            <h3 class="font-semibold text-slate-900 mb-1">Lễ hội hoa tam giác mạch Hà Giang 2026</h3>
+            <p class="text-slate-600">Thời gian, địa điểm và gợi ý tour kết hợp Đồng Văn – Mã Pì Lèng.</p>
+            </div>
+          </article>
+          <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-soft">
+            <div class="h-36 overflow-hidden">
+              <img src="images/tour-10.jpg" alt="Chợ nổi" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="p-3 sm:p-4">
+            <span class="inline-flex items-center gap-1 rounded-full bg-emerald-50 text-primary px-2.5 py-1 text-[11px] font-medium mb-2">
+              <i class="fa-solid fa-compass text-[10px]"></i> Cảm hứng du lịch
+            </span>
+            <h3 class="font-semibold text-slate-900 mb-1">Kinh nghiệm đi chợ nổi Cái Răng sớm và ăn sáng</h3>
+            <p class="text-slate-600">Giờ xuất phát lý tưởng, tour chợ nổi và món ăn nên thử tại Cần Thơ.</p>
+            </div>
+          </article>
+          <article class="bg-slate-50 rounded-2xl overflow-hidden shadow-soft">
+            <div class="h-36 overflow-hidden">
+              <img src="images/news-featured.jpg" alt="Ưu đãi 8/3" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="p-3 sm:p-4">
+            <span class="inline-flex items-center gap-1 rounded-full bg-accent/10 text-accent px-2.5 py-1 text-[11px] font-medium mb-2">
+              <i class="fa-solid fa-tags text-[10px]"></i> Tin khuyến mãi
+            </span>
+            <h3 class="font-semibold text-slate-900 mb-1">Ưu đãi tour 8/3: tặng 1 đêm khách sạn cho đoàn nữ</h3>
+            <p class="text-slate-600">Áp dụng tour Hội An, Đà Lạt, Phú Quốc khởi hành tháng 3/2026.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-100 pt-8 pb-6 mt-10">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-[11px]">
+          <p class="text-slate-400">
+            © 2026 DU LỊCH LÂM THƯ. Bản tin &amp; cảm hứng du lịch Việt Nam.
+          </p>
+          <div class="flex items-center gap-4 text-slate-400">
+            <a href="#" class="hover:text-emerald-200">Điều khoản sử dụng</a>
+            <a href="#" class="hover:text-emerald-200">Chính sách bảo mật</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="petals.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const toggle = document.getElementById("mobileMenuToggle");
+        const menu = document.getElementById("mobileMenu");
+        let open = false;
+        function setOpen(v) {
+          if (!menu) return;
+          open = v;
+          menu.style.maxHeight = v ? "260px" : "0";
+        }
+        toggle?.addEventListener("click", () => setOpen(!open));
+        menu?.addEventListener("click", (e) => {
+          const link = e.target.closest("a");
+          if (link) setOpen(false);
+        });
+      });
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giới thiệu - DU LỊCH LÂM THƯ</title>
+
+  <!-- Google Fonts: Be Vietnam Pro -->
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: "#059669" },
+            accent: { DEFAULT: "#f97316" },
+          },
+          fontFamily: {
+            bevn: ["Be Vietnam Pro", "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+
+<body class="bg-white text-slate-900 font-bevn relative overflow-x-hidden">
+  <!-- Hoa vàng rơi (phủ toàn trang) -->
+  <div id="fallingPetals" class="falling-petals" aria-hidden="true"></div>
+  <!-- Header (shared) -->
+  <header id="siteHeader" class="fixed inset-x-0 top-0 z-40 bg-white/95 backdrop-blur shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0">
+      <div class="flex items-center justify-between py-3 gap-4">
+        <!-- Logo -->
+        <a href="index.html#home" class="flex items-center gap-2 text-primary font-semibold">
+          <div
+            class="h-9 w-9 rounded-full bg-primary text-white flex items-center justify-center text-lg font-semibold shadow-md">
+            LT
+          </div>
+          <div class="leading-tight">
+            <div class="text-sm sm:text-base tracking-wide uppercase">
+              DU LỊCH LÂM THƯ
+            </div>
+            <div class="text-[11px] text-slate-500">
+              Tour · Khách sạn · Combo
+            </div>
+          </div>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden lg:flex items-center justify-center gap-5 text-xs sm:text-sm font-medium text-slate-700">
+          <a href="index.html#home" class="nav-link">Trang chủ</a>
+          <a href="tours.html" class="nav-link">Tour</a>
+          <a href="hotels.html" class="nav-link">Khách sạn</a>
+          <a href="services.html" class="nav-link">Dịch vụ</a>
+          <a href="news.html" class="nav-link">Tin tức</a>
+          <a href="about.html" class="nav-link">Giới thiệu</a>
+        </nav>
+
+        <!-- CTA + Mobile button -->
+        <div class="flex items-center gap-2">
+          <a href="tel:19001234"
+            class="hidden sm:inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 text-primary px-3 py-1.5 text-xs font-semibold cta-soft">
+            <i class="fa-solid fa-phone text-[11px]"></i>
+            <span>Hotline: 1900 1234</span>
+          </a>
+          <a href="index.html#newsletter"
+            class="hidden md:inline-flex items-center gap-2 rounded-full bg-accent text-white px-4 py-2 text-xs sm:text-sm font-semibold cta-main">
+            <i class="fa-solid fa-ticket text-[11px]"></i>
+            <span>Đăng ký ưu đãi</span>
+          </a>
+
+          <!-- Mobile menu button -->
+          <button id="mobileMenuToggle"
+            class="inline-flex lg:hidden items-center justify-center w-9 h-9 rounded-full border border-slate-300 text-slate-700 bg-white cta-soft"
+            aria-label="Mở menu">
+            <i class="fa-solid fa-bars text-sm"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu"
+      class="lg:hidden border-t border-slate-100 bg-white/98 backdrop-blur-md max-h-0 overflow-hidden transition-all duration-300">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0 py-3 space-y-2 text-sm">
+        <a href="index.html#home" class="block nav-link-mobile">Trang chủ</a>
+        <a href="tours.html" class="block nav-link-mobile">Tour</a>
+        <a href="hotels.html" class="block nav-link-mobile">Khách sạn</a>
+        <a href="services.html" class="block nav-link-mobile">Dịch vụ</a>
+        <a href="news.html" class="block nav-link-mobile">Tin tức</a>
+        <a href="about.html" class="block nav-link-mobile">Giới thiệu</a>
+        <a href="index.html#newsletter"
+          class="inline-flex items-center gap-2 rounded-full bg-accent text-white px-4 py-2 text-xs font-semibold cta-main mt-2">
+          <i class="fa-solid fa-ticket text-[11px]"></i>
+          <span>Đăng ký ưu đãi</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-20 sm:pt-24 pb-14 sm:pb-16">
+    <!-- Hero -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0 mb-8">
+      <div
+        class="relative rounded-3xl overflow-hidden shadow-xl min-h-[220px] flex items-center justify-center text-white">
+        <div class="absolute inset-0 bg-cover bg-center" style="
+              background-image: url('images/about-hero.jpg');
+            "></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-900/85 via-slate-900/65 to-primary/60"></div>
+        <div class="relative z-10 px-6 sm:px-10 py-8 sm:py-10 max-w-2xl">
+          <p class="text-xs uppercase tracking-[0.25em] text-emerald-200/90 mb-1">
+            Giới thiệu DU LỊCH LÂM THƯ
+          </p>
+          <h1 class="text-2xl sm:text-3xl font-semibold leading-snug mb-2">
+            Câu chuyện thương hiệu &amp; hành trình cùng du khách Việt
+          </h1>
+        </div>
+      </div>
+    </section>
+
+    <!-- Câu chuyện thương hiệu & Tầm nhìn, sứ mệnh -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0 mb-8 text-xs rounded-3xl py-8 px-6"
+      style="background: linear-gradient(135deg, #fefce8 0%, #fef9c3 30%, #fef3c7 70%, #fffbeb 100%);">
+      <div class="grid md:grid-cols-2 gap-6 items-start">
+        <div>
+          <h2 class="text-sm sm:text-base font-semibold text-slate-900 mb-2">
+            Câu chuyện thương hiệu
+          </h2>
+          <p class="text-slate-600 mb-2">
+            DU LỊCH LÂM THƯ được thành lập với mong muốn mang đến các hành
+            trình khám phá Việt Nam trọn vẹn, tinh tế và phù hợp với du khách
+            Việt, Việt kiều cũng như bạn bè quốc tế.
+          </p>
+          <p class="text-slate-600 mb-2">
+            Chúng tôi tin rằng mỗi chuyến đi là một cơ hội để hiểu hơn về đất
+            nước, con người và văn hoá Việt Nam, từ đó tạo nên những kỷ niệm
+            đáng nhớ và những mối gắn kết bền lâu.
+          </p>
+        </div>
+        <div>
+          <h2 class="text-sm sm:text-base font-semibold text-slate-900 mb-2">
+            Tầm nhìn &amp; Sứ mệnh
+          </h2>
+          <ul class="space-y-1.5 text-slate-600">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-bullseye text-primary mt-[2px] text-[10px]"></i>
+              <span>Tầm nhìn: Trở thành thương hiệu du lịch Việt Nam được tin
+                chọn hàng đầu trong phân khúc khách hàng chú trọng trải
+                nghiệm, lan toả vẻ đẹp Việt Nam ra khu vực và thế giới.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-heart text-primary mt-[2px] text-[10px]"></i>
+              <span>Sứ mệnh: Thiết kế những hành trình chỉn chu, an toàn và giàu
+                cảm xúc, kết nối du khách với văn hoá &amp; cộng đồng địa
+                phương, đồng thời đóng góp tích cực cho xã hội.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bản đồ hoạt động thiện nguyện -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0 mb-8 text-xs">
+      <div class="grid md:grid-cols-2 gap-6 items-start">
+        <div>
+          <h2 class="text-sm sm:text-base font-semibold text-slate-900 mb-2">
+            Bản đồ các hoạt động thiện nguyện
+          </h2>
+          <p class="text-slate-600 mb-2">
+            DU LỊCH LÂM THƯ thường xuyên tổ chức các chương trình thiện
+            nguyện, học bổng và hoạt động cộng đồng tại nhiều địa phương trên
+            cả nước.
+          </p>
+          <ul class="space-y-1.5 text-slate-600">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-location-dot text-primary mt-[2px] text-[10px]"></i>
+              <span>Hà Giang (2023): Trao quà cho học sinh vùng cao.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-location-dot text-primary mt-[2px] text-[10px]"></i>
+              <span>Miền Trung (2022): Hỗ trợ bà con bị ảnh hưởng lũ lụt.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-location-dot text-primary mt-[2px] text-[10px]"></i>
+              <span>Miền Tây (2021): Tặng quà Tết cho hộ gia đình khó khăn.</span>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <div class="rounded-2xl overflow-hidden shadow-soft border border-slate-200">
+            <img src="images/about-hero.jpg" alt="Bản đồ Việt Nam minh hoạ các hoạt động thiện nguyện"
+              class="w-full h-48 sm:h-56 object-cover" />
+          </div>
+          <p class="text-[11px] text-slate-500 mt-1.5">
+            Bản đồ minh họa một số tỉnh thành DU LỊCH LÂM THƯ đã triển khai
+            hoạt động thiện nguyện trong những năm gần đây.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Số liệu thống kê (counter) -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0 mb-10">
+      <div class="rounded-3xl bg-slate-50 border border-slate-200 px-4 sm:px-6 py-6 sm:py-7 shadow-soft">
+        <div class="grid md:grid-cols-3 gap-6 text-center text-xs">
+          <div>
+            <p class="text-[11px] text-slate-500 mb-1">
+              Khách hàng đã đồng hành
+            </p>
+            <p class="text-2xl sm:text-3xl font-semibold text-primary stat-number" data-target="12000">
+              0
+            </p>
+            <p class="text-[11px] text-slate-500">khách hàng</p>
+          </div>
+          <div>
+            <p class="text-[11px] text-slate-500 mb-1">
+              Năm kinh nghiệm trong ngành
+            </p>
+            <p class="text-2xl sm:text-3xl font-semibold text-primary stat-number" data-target="10">
+              0
+            </p>
+            <p class="text-[11px] text-slate-500">năm hoạt động</p>
+          </div>
+          <div>
+            <p class="text-[11px] text-slate-500 mb-1">
+              Đối tác khách sạn, hãng bay, lữ hành
+            </p>
+            <p class="text-2xl sm:text-3xl font-semibold text-primary stat-number" data-target="150">
+              0
+            </p>
+            <p class="text-[11px] text-slate-500">đối tác</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Đội ngũ, giải thưởng & chi nhánh -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0 text-xs">
+      <div class="grid md:grid-cols-3 gap-6 items-start">
+        <!-- Đội ngũ -->
+        <div class="md:col-span-1">
+          <h2 class="text-sm sm:text-base font-semibold text-slate-900 mb-2">
+            Đội ngũ nhân sự
+          </h2>
+          <p class="text-slate-600 mb-2">
+            Đội ngũ điều hành tour, chăm sóc khách hàng và hướng dẫn viên của
+            DU LỊCH LÂM THƯ đều có nhiều năm kinh nghiệm, am hiểu điểm đến và
+            luôn đặt sự an toàn, thoải mái của khách hàng lên hàng đầu.
+          </p>
+          <ul class="space-y-1.5 text-slate-600">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-user-tie text-primary mt-[2px] text-[10px]"></i>
+              <span>Hướng dẫn viên được cấp thẻ, sử dụng tốt ngoại ngữ.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-users text-primary mt-[2px] text-[10px]"></i>
+              <span>Chăm sóc khách hàng 24/7 trong suốt hành trình.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Giải thưởng -->
+        <div class="md:col-span-1">
+          <h2 class="text-sm sm:text-base font-semibold text-slate-900 mb-2">
+            Giải thưởng &amp; ghi nhận
+          </h2>
+          <ul class="space-y-1.5 text-slate-600">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-trophy text-primary mt-[2px] text-[10px]"></i>
+              <span>
+                Top 10 doanh nghiệp du lịch được yêu thích tại TP.HCM (2024).
+              </span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-medal text-primary mt-[2px] text-[10px]"></i>
+              <span>
+                Giải thưởng “Dịch vụ chăm sóc khách hàng xuất sắc” do một số
+                đối tác khách sạn &amp; hãng bay trao tặng.
+              </span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-hands-holding-heart text-primary mt-[2px] text-[10px]"></i>
+              <span>
+                Bằng khen từ địa phương cho các chương trình thiện nguyện
+                cộng đồng.
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Giấy phép & chi nhánh -->
+        <div class="md:col-span-1">
+          <h2 class="text-sm sm:text-base font-semibold text-slate-900 mb-2">
+            Giấy phép &amp; chi nhánh
+          </h2>
+          <p class="text-slate-600 mb-2">
+            DU LỊCH LÂM THƯ hoạt động theo giấy phép lữ hành do Tổng cục Du
+            lịch Việt Nam cấp, với hệ thống văn phòng tại ba thành phố lớn.
+          </p>
+          <ul class="space-y-1.5 text-slate-600">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-certificate text-primary mt-[2px] text-[10px]"></i>
+              <span>Giấy phép kinh doanh lữ hành quốc tế số:
+                <strong>79-1234/2023/TCDL-GP LHQT</strong>.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-location-dot text-primary mt-[2px] text-[10px]"></i>
+              <span>Trường THPT Dương Văn Dương</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-location-dot text-primary mt-[2px] text-[10px]"></i>
+              <span>Hà Nội (Chi nhánh): 120 Trần Hưng Đạo, Quận Hoàn Kiếm.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-location-dot text-primary mt-[2px] text-[10px]"></i>
+              <span>Đà Nẵng (Chi nhánh): 45 Bạch Đằng, Quận Hải Châu.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bản đồ Google Maps -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0 mt-10 mb-10 text-xs">
+      <div class="mb-4">
+        <p class="text-xs uppercase tracking-[0.25em] text-primary mb-2">
+          Vị trí
+        </p>
+        <h2 class="text-sm sm:text-base font-semibold text-slate-900 mb-1">
+          Bản đồ - Đến với chúng tôi
+        </h2>
+      </div>
+      <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-soft bg-slate-100">
+        <iframe title="Bản đồ - Trường THPT Dương Văn Dương"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3272.363545248862!2d106.7407595!3d10.679591899999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31753abe0f63d9a9%3A0x9e842c5bcb011356!2sDuong%20Van%20Duong%20High%20School!5e1!3m2!1sen!2s!4v1772042431125!5m2!1sen!2s"
+          width="100%" height="360" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade" class="w-full block"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-100 pt-8 pb-6 mt-10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-[11px]">
+        <p class="text-slate-400">
+          © 2026 DU LỊCH LÂM THƯ. Du lịch Việt Nam toàn diện.
+        </p>
+        <div class="flex items-center gap-4 text-slate-400">
+          <a href="#" class="hover:text-emerald-200">Điều khoản sử dụng</a>
+          <a href="#" class="hover:text-emerald-200">Chính sách bảo mật</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="petals.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Mobile menu
+      const toggle = document.getElementById("mobileMenuToggle");
+      const menu = document.getElementById("mobileMenu");
+      let open = false;
+      function setOpen(v) {
+        if (!menu) return;
+        open = v;
+        menu.style.maxHeight = v ? "260px" : "0";
+      }
+      toggle?.addEventListener("click", () => setOpen(!open));
+      menu?.addEventListener("click", (e) => {
+        const link = e.target.closest("a");
+        if (link) setOpen(false);
+      });
+
+      // Counter numbers when section in view
+      const counters = document.querySelectorAll(".stat-number");
+      if (!("IntersectionObserver" in window) || !counters.length) return;
+
+      const animateCounter = (el) => {
+        const target = Number(el.dataset.target || "0");
+        let current = 0;
+        const duration = 1500;
+        const stepTime = 30;
+        const steps = Math.ceil(duration / stepTime);
+        const increment = target / steps;
+
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            el.textContent = target.toLocaleString("vi-VN");
+            clearInterval(timer);
+          } else {
+            el.textContent = Math.floor(current).toLocaleString("vi-VN");
+          }
+        }, stepTime);
+      };
+
+      const observer = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              animateCounter(entry.target);
+              obs.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.4 }
+      );
+
+      counters.forEach((el) => observer.observe(el));
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dịch vụ du lịch - DU LỊCH LÂM THƯ</title>
+
+    <!-- Google Fonts: Be Vietnam Pro -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: { DEFAULT: "#059669" },
+              accent: { DEFAULT: "#f97316" },
+            },
+            fontFamily: {
+              bevn: ["Be Vietnam Pro", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="bg-white text-slate-900 font-bevn relative overflow-x-hidden">
+    <!-- Hoa vàng rơi (phủ toàn trang) -->
+    <div id="fallingPetals" class="falling-petals" aria-hidden="true"></div>
+    <!-- Header (shared) -->
+    <header
+      id="siteHeader"
+      class="fixed inset-x-0 top-0 z-40 bg-white/95 backdrop-blur shadow-sm"
+    >
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0">
+        <div class="flex items-center justify-between py-3 gap-4">
+          <!-- Logo -->
+          <a
+            href="index.html#home"
+            class="flex items-center gap-2 text-primary font-semibold"
+          >
+            <div
+              class="h-9 w-9 rounded-full bg-primary text-white flex items-center justify-center text-lg font-semibold shadow-md"
+            >
+              LT
+            </div>
+            <div class="leading-tight">
+              <div class="text-sm sm:text-base tracking-wide uppercase">
+                DU LỊCH LÂM THƯ
+              </div>
+              <div class="text-[11px] text-slate-500">
+                Tour · Khách sạn · Combo
+              </div>
+            </div>
+          </a>
+
+          <!-- Desktop Nav -->
+          <nav
+            class="hidden lg:flex items-center justify-center gap-5 text-xs sm:text-sm font-medium text-slate-700"
+          >
+            <a href="index.html#home" class="nav-link">Trang chủ</a>
+            <a href="tours.html" class="nav-link">Tour</a>
+            <a href="hotels.html" class="nav-link">Khách sạn</a>
+            <a href="services.html" class="nav-link">Dịch vụ</a>
+            <a href="news.html" class="nav-link">Tin tức</a>
+            <a href="about.html" class="nav-link">Giới thiệu</a>
+          </nav>
+
+          <!-- CTA + Mobile button -->
+          <div class="flex items-center gap-2">
+            <a
+              href="tel:19001234"
+              class="hidden sm:inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 text-primary px-3 py-1.5 text-xs font-semibold cta-soft"
+            >
+              <i class="fa-solid fa-phone text-[11px]"></i>
+              <span>Hotline: 1900 1234</span>
+            </a>
+            <a
+              href="index.html#newsletter"
+              class="hidden md:inline-flex items-center gap-2 rounded-full bg-accent text-white px-4 py-2 text-xs sm:text-sm font-semibold cta-main"
+            >
+              <i class="fa-solid fa-ticket text-[11px]"></i>
+              <span>Đăng ký ưu đãi</span>
+            </a>
+
+            <!-- Mobile menu button -->
+            <button
+              id="mobileMenuToggle"
+              class="inline-flex lg:hidden items-center justify-center w-9 h-9 rounded-full border border-slate-300 text-slate-700 bg-white cta-soft"
+              aria-label="Mở menu"
+            >
+              <i class="fa-solid fa-bars text-sm"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div
+        id="mobileMenu"
+        class="lg:hidden border-t border-slate-100 bg-white/98 backdrop-blur-md max-h-0 overflow-hidden transition-all duration-300"
+      >
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0 py-3 space-y-2 text-sm">
+          <a href="index.html#home" class="block nav-link-mobile">Trang chủ</a>
+          <a href="tours.html" class="block nav-link-mobile">Tour</a>
+          <a href="hotels.html" class="block nav-link-mobile">Khách sạn</a>
+          <a href="services.html" class="block nav-link-mobile">Dịch vụ</a>
+          <a href="news.html" class="block nav-link-mobile">Tin tức</a>
+          <a href="about.html" class="block nav-link-mobile">Giới thiệu</a>
+          <a
+            href="index.html#newsletter"
+            class="inline-flex items-center gap-2 rounded-full bg-accent text-white px-4 py-2 text-xs font-semibold cta-main mt-2"
+          >
+            <i class="fa-solid fa-ticket text-[11px]"></i>
+            <span>Đăng ký ưu đãi</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="pt-20 sm:pt-24 pb-14 sm:pb-16">
+      <!-- Hero -->
+      <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0 mb-10">
+        <div
+          class="relative rounded-3xl overflow-hidden shadow-xl min-h-[220px] flex items-center justify-center text-white"
+        >
+          <div
+            class="absolute inset-0 bg-cover bg-center"
+            style="
+              background-image: url('images/services-hero.jpg');
+            "
+          ></div>
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-slate-900/85 via-slate-900/65 to-primary/60"
+          ></div>
+          <div class="relative z-10 px-6 sm:px-10 py-8 sm:py-10 max-w-2xl">
+            <p class="text-xs uppercase tracking-[0.25em] text-emerald-200/90 mb-1">
+              Dịch vụ bổ trợ · DU LỊCH LÂM THƯ
+            </p>
+            <h1 class="text-2xl sm:text-3xl font-semibold leading-snug mb-2">
+              Dịch vụ du lịch trọn gói cho hành trình của bạn
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-100/90">
+              Thuê xe, vé máy bay, bảo hiểm du lịch và sim quốc tế giúp chuyến
+              đi của bạn trọn vẹn và an tâm hơn.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dịch vụ chính -->
+      <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0 mb-10">
+        <div class="grid md:grid-cols-2 gap-6 text-xs">
+          <!-- Thuê xe -->
+          <article class="bg-slate-50 rounded-2xl p-4 sm:p-5 shadow-soft">
+            <div class="flex items-start gap-3 mb-2">
+              <div
+                class="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm"
+              >
+                <i class="fa-solid fa-van-shuttle"></i>
+              </div>
+              <div>
+                <h2 class="text-sm sm:text-base font-semibold text-slate-900">
+                  Thuê xe du lịch 4 - 45 chỗ
+                </h2>
+                <p class="text-slate-600 mt-1">
+                  Phục vụ đưa đón sân bay, tham quan trong ngày, tour dài ngày
+                  khắp 3 miền.
+                </p>
+              </div>
+            </div>
+            <ul class="space-y-1.5 text-slate-600">
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-primary mt-[2px] text-[10px]"></i>
+                <span>Xe từ 4 - 45 chỗ đời mới, nội thất sạch sẽ.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-primary mt-[2px] text-[10px]"></i>
+                <span>Tài xế thân thiện, kinh nghiệm đường dài.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-primary mt-[2px] text-[10px]"></i>
+                <span>Hợp đồng rõ ràng, giá trọn gói, không phát sinh.</span>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Vé máy bay -->
+          <article class="bg-slate-50 rounded-2xl p-4 sm:p-5 shadow-soft">
+            <div class="flex items-start gap-3 mb-2">
+              <div
+                class="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm"
+              >
+                <i class="fa-solid fa-plane-departure"></i>
+              </div>
+              <div>
+                <h2 class="text-sm sm:text-base font-semibold text-slate-900">
+                  Vé máy bay nội địa &amp; quốc tế
+                </h2>
+                <p class="text-slate-600 mt-1">
+                  Là đại lý của nhiều hãng hàng không, hỗ trợ giữ chỗ, đổi ngày
+                  linh hoạt.
+                </p>
+              </div>
+            </div>
+            <ul class="space-y-1.5 text-slate-600">
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-primary mt-[2px] text-[10px]"></i>
+                <span>Giá vé cạnh tranh, nhiều lựa chọn giờ bay.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-primary mt-[2px] text-[10px]"></i>
+                <span>Hỗ trợ xuất hóa đơn, xuất vé điện tử nhanh chóng.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-primary mt-[2px] text-[10px]"></i>
+                <span
+                  >Tư vấn hành lý, quy định check-in cho từng hãng bay.</span
+                >
+              </li>
+            </ul>
+          </article>
+
+          <!-- Bảo hiểm du lịch -->
+          <article class="bg-slate-50 rounded-2xl p-4 sm:p-5 shadow-soft">
+            <div class="flex items-start gap-3 mb-2">
+              <div
+                class="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm"
+              >
+                <i class="fa-solid fa-shield-heart"></i>
+              </div>
+              <div>
+                <h2 class="text-sm sm:text-base font-semibold text-slate-900">
+                  Bảo hiểm du lịch
+                </h2>
+                <p class="text-slate-600 mt-1">
+                  Bảo vệ tài chính trước các rủi ro y tế, hành lý, chuyến bay
+                  bị hoãn/hủy.
+                </p>
+              </div>
+            </div>
+            <ul class="space-y-1.5 text-slate-600">
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-primary mt-[2px] text-[10px]"></i>
+                <span>Gói bảo hiểm trong nước &amp; quốc tế linh hoạt.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-primary mt-[2px] text-[10px]"></i>
+                <span>Hỗ trợ giấy tờ bảo hiểm theo yêu cầu đối tác.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-primary mt-[2px] text-[10px]"></i>
+                <span>Hướng dẫn quy trình yêu cầu bồi thường đơn giản.</span>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Sim du lịch quốc tế -->
+          <article class="bg-slate-50 rounded-2xl p-4 sm:p-5 shadow-soft">
+            <div class="flex items-start gap-3 mb-2">
+              <div
+                class="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm"
+              >
+                <i class="fa-solid fa-sim-card"></i>
+              </div>
+              <div>
+                <h2 class="text-sm sm:text-base font-semibold text-slate-900">
+                  Sim &amp; eSim du lịch quốc tế
+                </h2>
+                <p class="text-slate-600 mt-1">
+                  Luôn giữ kết nối Internet khi đi nước ngoài với các gói data
+                  tiện lợi.
+                </p>
+              </div>
+            </div>
+            <ul class="space-y-1.5 text-slate-600">
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-primary mt-[2px] text-[10px]"></i>
+                <span>Sim vật lý &amp; eSim cho Châu Á, Châu Âu, Mỹ.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-primary mt-[2px] text-[10px]"></i>
+                <span>Cài đặt đơn giản, hướng dẫn chi tiết.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-primary mt-[2px] text-[10px]"></i>
+                <span>Hỗ trợ từ xa trong suốt hành trình.</span>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- CTA chung -->
+      <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0">
+        <div
+          class="rounded-3xl bg-primary text-white px-5 sm:px-8 py-6 sm:py-7 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+        >
+          <div class="space-y-1 text-xs sm:text-sm">
+            <h2 class="text-sm sm:text-base font-semibold">
+              Cần báo giá dịch vụ riêng cho đoàn?
+            </h2>
+            <p class="text-emerald-50">
+              Gửi yêu cầu, chúng tôi sẽ tư vấn phương án dịch vụ tối ưu nhất cho
+              ngân sách và nhu cầu của bạn.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <a
+              href="tel:19001234"
+              class="inline-flex items-center gap-2 rounded-full bg-white text-primary px-4 py-2 font-semibold cta-main"
+            >
+              <i class="fa-solid fa-phone text-[11px]"></i>
+              Gọi trực tiếp 1900 1234
+            </a>
+            <a
+              href="index.html#contact"
+              class="inline-flex items-center gap-2 rounded-full border border-white/60 text-white px-4 py-2 font-semibold cta-soft"
+            >
+              <i class="fa-solid fa-envelope-open-text text-[11px]"></i>
+              Liên hệ tư vấn dịch vụ
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-100 pt-8 pb-6 mt-10">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-[11px]">
+          <p class="text-slate-400">
+            © 2026 DU LỊCH LÂM THƯ. Dịch vụ du lịch trọn gói cho hành trình của
+            bạn.
+          </p>
+          <div class="flex items-center gap-4 text-slate-400">
+            <a href="#" class="hover:text-emerald-200">Điều khoản sử dụng</a>
+            <a href="#" class="hover:text-emerald-200">Chính sách bảo mật</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="petals.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const toggle = document.getElementById("mobileMenuToggle");
+        const menu = document.getElementById("mobileMenu");
+        let open = false;
+        function setOpen(v) {
+          if (!menu) return;
+          open = v;
+          menu.style.maxHeight = v ? "260px" : "0";
+        }
+        toggle?.addEventListener("click", () => setOpen(!open));
+        menu?.addEventListener("click", (e) => {
+          const link = e.target.closest("a");
+          if (link) setOpen(false);
+        });
+      });
+    </script>
+  </body>
+</html>
+

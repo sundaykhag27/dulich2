@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Khách sạn - DU LỊCH LÂM THƯ</title>
+
+    <!-- Google Fonts: Be Vietnam Pro -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: { DEFAULT: "#059669" },
+              accent: { DEFAULT: "#f97316" },
+            },
+            fontFamily: {
+              bevn: ["Be Vietnam Pro", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="bg-white text-slate-900 font-bevn relative overflow-x-hidden">
+    <!-- Hoa vàng rơi (phủ toàn trang) -->
+    <div id="fallingPetals" class="falling-petals" aria-hidden="true"></div>
+    <!-- Header (shared) -->
+    <header
+      id="siteHeader"
+      class="fixed inset-x-0 top-0 z-40 bg-white/95 backdrop-blur shadow-sm"
+    >
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0">
+        <div class="flex items-center justify-between py-3 gap-4">
+          <!-- Logo -->
+          <a
+            href="index.html#home"
+            class="flex items-center gap-2 text-primary font-semibold"
+          >
+            <div
+              class="h-9 w-9 rounded-full bg-primary text-white flex items-center justify-center text-lg font-semibold shadow-md"
+            >
+              LT
+            </div>
+            <div class="leading-tight">
+              <div class="text-sm sm:text-base tracking-wide uppercase">
+                DU LỊCH LÂM THƯ
+              </div>
+              <div class="text-[11px] text-slate-500">
+                Tour · Khách sạn · Combo
+              </div>
+            </div>
+          </a>
+
+          <!-- Desktop Nav -->
+          <nav
+            class="hidden lg:flex items-center justify-center gap-5 text-xs sm:text-sm font-medium text-slate-700"
+          >
+            <a href="index.html#home" class="nav-link">Trang chủ</a>
+            <a href="tours.html" class="nav-link">Tour</a>
+            <a href="hotels.html" class="nav-link">Khách sạn</a>
+            <a href="services.html" class="nav-link">Dịch vụ</a>
+            <a href="news.html" class="nav-link">Tin tức</a>
+            <a href="about.html" class="nav-link">Giới thiệu</a>
+          </nav>
+
+          <!-- CTA + Mobile button -->
+          <div class="flex items-center gap-2">
+            <a
+              href="tel:19001234"
+              class="hidden sm:inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 text-primary px-3 py-1.5 text-xs font-semibold cta-soft"
+            >
+              <i class="fa-solid fa-phone text-[11px]"></i>
+              <span>Hotline: 1900 1234</span>
+            </a>
+            <a
+              href="index.html#newsletter"
+              class="hidden md:inline-flex items-center gap-2 rounded-full bg-accent text-white px-4 py-2 text-xs sm:text-sm font-semibold cta-main"
+            >
+              <i class="fa-solid fa-ticket text-[11px]"></i>
+              <span>Đăng ký ưu đãi</span>
+            </a>
+
+            <!-- Mobile menu button -->
+            <button
+              id="mobileMenuToggle"
+              class="inline-flex lg:hidden items-center justify-center w-9 h-9 rounded-full border border-slate-300 text-slate-700 bg-white cta-soft"
+              aria-label="Mở menu"
+            >
+              <i class="fa-solid fa-bars text-sm"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div
+        id="mobileMenu"
+        class="lg:hidden border-t border-slate-100 bg-white/98 backdrop-blur-md max-h-0 overflow-hidden transition-all duration-300"
+      >
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0 py-3 space-y-2 text-sm">
+          <a href="index.html#home" class="block nav-link-mobile">Trang chủ</a>
+          <a href="tours.html" class="block nav-link-mobile">Tour</a>
+          <a href="hotels.html" class="block nav-link-mobile">Khách sạn</a>
+          <a href="services.html" class="block nav-link-mobile">Dịch vụ</a>
+          <a href="news.html" class="block nav-link-mobile">Tin tức</a>
+          <a href="about.html" class="block nav-link-mobile">Giới thiệu</a>
+          <a
+            href="index.html#newsletter"
+            class="inline-flex items-center gap-2 rounded-full bg-accent text-white px-4 py-2 text-xs font-semibold cta-main mt-2"
+          >
+            <i class="fa-solid fa-ticket text-[11px]"></i>
+            <span>Đăng ký ưu đãi</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="pt-20 sm:pt-24 pb-14 sm:pb-16">
+      <!-- Hero + Search -->
+      <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0 mb-8">
+        <div
+          class="relative rounded-3xl overflow-hidden shadow-xl min-h-[260px] flex items-center"
+        >
+          <div
+            class="absolute inset-0 bg-cover bg-center"
+            style="
+              background-image: url('images/hotels-hero.jpg');
+            "
+          ></div>
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-900/60 to-slate-900/20"
+          ></div>
+          <div class="relative z-10 w-full px-6 sm:px-10 py-8 sm:py-10">
+            <div class="max-w-xl space-y-3 text-white mb-5">
+              <p class="text-xs uppercase tracking-[0.25em] text-emerald-200/90">
+                Khách sạn &amp; Resort
+              </p>
+              <h1 class="text-2xl sm:text-3xl font-semibold leading-snug">
+                Đặt phòng khách sạn
+                <span class="text-emerald-200">3-5 sao</span> tại Việt Nam
+              </h1>
+              <p class="text-xs sm:text-sm text-slate-100/90">
+                Lọc theo vùng miền hoặc tỉnh thành, lựa chọn khách sạn phù hợp
+                với ngân sách và phong cách nghỉ dưỡng của bạn.
+              </p>
+            </div>
+
+            <!-- Filter form -->
+            <form
+              class="bg-white/95 backdrop-blur rounded-2xl p-4 sm:p-5 shadow-lg text-xs space-y-3"
+            >
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div class="space-y-1">
+                  <label class="font-medium text-slate-700" for="region"
+                    >Vùng miền</label
+                  >
+                  <select
+                    id="region"
+                    class="w-full rounded-full border border-slate-200 px-3 py-2 outline-none text-xs text-slate-700"
+                  >
+                    <option>Miền Bắc</option>
+                    <option>Miền Trung</option>
+                    <option>Miền Nam</option>
+                  </select>
+                </div>
+                <div class="space-y-1">
+                  <label class="font-medium text-slate-700" for="province"
+                    >Tỉnh / Thành phố</label
+                  >
+                  <input
+                    id="province"
+                    type="text"
+                    placeholder="Hà Nội, Đà Nẵng, Phú Quốc..."
+                    class="w-full rounded-full border border-slate-200 px-3 py-2 outline-none text-xs placeholder:text-slate-400"
+                  />
+                </div>
+                <div class="space-y-1">
+                  <label class="font-medium text-slate-700" for="checkin"
+                    >Ngày nhận phòng</label
+                  >
+                  <input
+                    id="checkin"
+                    type="date"
+                    class="w-full rounded-full border border-slate-200 px-3 py-2 outline-none text-xs text-slate-700"
+                  />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div class="space-y-1">
+                  <p class="font-medium text-slate-700">Hạng sao</p>
+                  <div class="flex flex-wrap gap-1.5">
+                    <button
+                      type="button"
+                      class="px-3 py-1 rounded-full border border-slate-200 text-slate-600 text-[11px]"
+                    >
+                      3 sao
+                    </button>
+                    <button
+                      type="button"
+                      class="px-3 py-1 rounded-full border border-slate-200 text-slate-600 text-[11px]"
+                    >
+                      4 sao
+                    </button>
+                    <button
+                      type="button"
+                      class="px-3 py-1 rounded-full border border-slate-200 text-slate-600 text-[11px]"
+                    >
+                      5 sao
+                    </button>
+                  </div>
+                </div>
+                <div class="space-y-1">
+                  <p class="font-medium text-slate-700">Khoảng giá (1 đêm)</p>
+                  <div class="flex flex-wrap gap-1.5">
+                    <button
+                      type="button"
+                      class="px-3 py-1 rounded-full border border-slate-200 text-slate-600 text-[11px]"
+                    >
+                      &lt; 1.000.000 đ
+                    </button>
+                    <button
+                      type="button"
+                      class="px-3 py-1 rounded-full border border-slate-200 text-slate-600 text-[11px]"
+                    >
+                      1 - 2 triệu
+                    </button>
+                    <button
+                      type="button"
+                      class="px-3 py-1 rounded-full border border-slate-200 text-slate-600 text-[11px]"
+                    >
+                      &gt; 2 triệu
+                    </button>
+                  </div>
+                </div>
+                <div class="space-y-1">
+                  <p class="font-medium text-slate-700">Tiện ích</p>
+                  <div class="flex flex-wrap gap-1.5">
+                    <button
+                      type="button"
+                      class="px-3 py-1 rounded-full border border-slate-200 text-slate-600 text-[11px]"
+                    >
+                      Hồ bơi
+                    </button>
+                    <button
+                      type="button"
+                      class="px-3 py-1 rounded-full border border-slate-200 text-slate-600 text-[11px]"
+                    >
+                      Buffet sáng
+                    </button>
+                    <button
+                      type="button"
+                      class="px-3 py-1 rounded-full border border-slate-200 text-slate-600 text-[11px]"
+                    >
+                      Gần biển
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap gap-2 justify-end pt-1">
+                <button
+                  type="reset"
+                  class="px-3 py-2 rounded-full border border-slate-200 text-slate-600 text-[11px] cta-soft bg-white"
+                >
+                  Xoá bộ lọc
+                </button>
+                <button
+                  type="submit"
+                  class="px-4 py-2 rounded-full bg-accent text-white text-[11px] font-semibold cta-main"
+                >
+                  Tìm khách sạn phù hợp
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- Danh sách khách sạn -->
+      <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0">
+        <div class="flex items-center justify-between gap-3 mb-4">
+          <h2 class="text-sm sm:text-base font-semibold text-slate-900">
+            Gợi ý khách sạn &amp; resort nổi bật
+          </h2>
+          <p class="text-[11px] text-slate-500">
+            Giá hiển thị cho 1 đêm · Đã bao gồm thuế &amp; phí dịch vụ
+          </p>
+        </div>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 text-xs"
+        >
+          <!-- Hotel card 1 -->
+          <article
+            class="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-2xl transition flex flex-col"
+          >
+            <div class="relative h-40 overflow-hidden">
+              <img
+                src="images/hotel-1.jpg"
+                alt="Khách sạn 5 sao Hạ Long"
+                class="w-full h-full object-cover"
+              />
+              <div
+                class="absolute top-3 left-3 rounded-full bg-primary text-white text-[11px] font-semibold px-3 py-1 flex items-center gap-1 shadow-md"
+              >
+                <i class="fa-solid fa-map-marker-alt text-[10px]"></i>
+                Hạ Long · Miền Bắc
+              </div>
+            </div>
+            <div class="flex-1 flex flex-col p-4 sm:p-5">
+              <div class="flex items-center justify-between gap-2 mb-1.5">
+                <h3 class="font-semibold text-slate-900 text-sm">
+                  Halong Bay View Resort
+                </h3>
+                <div class="flex items-center gap-0.5 text-amber-400 text-[10px]">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-regular fa-star"></i>
+                </div>
+              </div>
+              <p class="text-[11px] text-slate-500 mb-2">
+                View vịnh Hạ Long, hồ bơi vô cực, cách bến du thuyền 5 phút.
+              </p>
+              <div class="flex items-center justify-between mb-2">
+                <span class="inline-flex items-center gap-1 text-emerald-600">
+                  <i class="fa-solid fa-thumbs-up text-[10px]"></i>
+                  9.1 tuyệt vời (320 đánh giá)
+                </span>
+                <span class="text-[11px] text-slate-400">5 sao</span>
+              </div>
+              <div class="flex items-end justify-between mt-auto">
+                <div class="leading-tight">
+                  <div class="text-[11px] text-slate-400">Giá ưu đãi từ</div>
+                  <div class="text-base font-semibold text-accent">
+                    2.300.000 đ
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  class="inline-flex items-center gap-2 rounded-full border border-primary text-primary px-4 py-2 text-[11px] font-semibold hover:bg-primary hover:text-white transition cta-soft"
+                >
+                  Đặt phòng
+                  <i class="fa-solid fa-arrow-right text-[9px]"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Hotel card 2 -->
+          <article
+            class="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-2xl transition flex flex-col"
+          >
+            <div class="relative h-40 overflow-hidden">
+              <img
+                src="images/hotel-2.jpg"
+                alt="Resort Đà Nẵng"
+                class="w-full h-full object-cover"
+              />
+              <div
+                class="absolute top-3 left-3 rounded-full bg-primary text-white text-[11px] font-semibold px-3 py-1 flex items-center gap-1 shadow-md"
+              >
+                <i class="fa-solid fa-map-marker-alt text-[10px]"></i>
+                Đà Nẵng · Miền Trung
+              </div>
+            </div>
+            <div class="flex-1 flex flex-col p-4 sm:p-5">
+              <div class="flex items-center justify-between gap-2 mb-1.5">
+                <h3 class="font-semibold text-slate-900 text-sm">
+                  Danang Beachfront Resort
+                </h3>
+                <div class="flex items-center gap-0.5 text-amber-400 text-[10px]">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                </div>
+              </div>
+              <p class="text-[11px] text-slate-500 mb-2">
+                Bãi biển riêng, hồ bơi lớn, buffet sáng phong phú, gần phố cổ
+                Hội An.
+              </p>
+              <div class="flex items-center justify-between mb-2">
+                <span class="inline-flex items-center gap-1 text-emerald-600">
+                  <i class="fa-solid fa-thumbs-up text-[10px]"></i>
+                  9.4 xuất sắc (512 đánh giá)
+                </span>
+                <span class="text-[11px] text-slate-400">5 sao</span>
+              </div>
+              <div class="flex items-end justify-between mt-auto">
+                <div class="leading-tight">
+                  <div class="text-[11px] text-slate-400">Giá ưu đãi từ</div>
+                  <div class="text-base font-semibold text-accent">
+                    2.800.000 đ
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  class="inline-flex items-center gap-2 rounded-full border border-primary text-primary px-4 py-2 text-[11px] font-semibold hover:bg-primary hover:text-white transition cta-soft"
+                >
+                  Đặt phòng
+                  <i class="fa-solid fa-arrow-right text-[9px]"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Hotel card 3 -->
+          <article
+            class="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-2xl transition flex flex-col"
+          >
+            <div class="relative h-40 overflow-hidden">
+              <img
+                src="images/hotel-3.jpg"
+                alt="Resort Phú Quốc"
+                class="w-full h-full object-cover"
+              />
+              <div
+                class="absolute top-3 left-3 rounded-full bg-primary text-white text-[11px] font-semibold px-3 py-1 flex items-center gap-1 shadow-md"
+              >
+                <i class="fa-solid fa-map-marker-alt text-[10px]"></i>
+                Phú Quốc · Miền Nam
+              </div>
+            </div>
+            <div class="flex-1 flex flex-col p-4 sm:p-5">
+              <div class="flex items-center justify-between gap-2 mb-1.5">
+                <h3 class="font-semibold text-slate-900 text-sm">
+                  Phu Quoc Island Retreat
+                </h3>
+                <div class="flex items-center gap-0.5 text-amber-400 text-[10px]">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star-half-stroke"></i>
+                  <i class="fa-regular fa-star"></i>
+                </div>
+              </div>
+              <p class="text-[11px] text-slate-500 mb-2">
+                Bungalow sát biển, phù hợp cặp đôi, có dịch vụ spa và tour đảo.
+              </p>
+              <div class="flex items-center justify-between mb-2">
+                <span class="inline-flex items-center gap-1 text-emerald-600">
+                  <i class="fa-solid fa-thumbs-up text-[10px]"></i>
+                  8.8 rất tốt (210 đánh giá)
+                </span>
+                <span class="text-[11px] text-slate-400">4 sao</span>
+              </div>
+              <div class="flex items-end justify-between mt-auto">
+                <div class="leading-tight">
+                  <div class="text-[11px] text-slate-400">Giá ưu đãi từ</div>
+                  <div class="text-base font-semibold text-accent">
+                    1.900.000 đ
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  class="inline-flex items-center gap-2 rounded-full border border-primary text-primary px-4 py-2 text-[11px] font-semibold hover:bg-primary hover:text-white transition cta-soft"
+                >
+                  Đặt phòng
+                  <i class="fa-solid fa-arrow-right text-[9px]"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer (shared, rút gọn) -->
+    <footer class="bg-slate-900 text-slate-100 pt-8 pb-6">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-0">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-[11px]">
+          <p class="text-slate-400">
+            © 2026 DU LỊCH LÂM THƯ. Hệ thống đặt tour &amp; khách sạn Việt Nam.
+          </p>
+          <div class="flex items-center gap-4 text-slate-400">
+            <a href="#" class="hover:text-emerald-200">Điều khoản sử dụng</a>
+            <a href="#" class="hover:text-emerald-200">Chính sách bảo mật</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="petals.js"></script>
+    <script>
+      // Toggle mobile menu (tái sử dụng đơn giản cho trang này)
+      document.addEventListener("DOMContentLoaded", () => {
+        const toggle = document.getElementById("mobileMenuToggle");
+        const menu = document.getElementById("mobileMenu");
+        let open = false;
+        function setOpen(v) {
+          if (!menu) return;
+          open = v;
+          menu.style.maxHeight = v ? "260px" : "0";
+        }
+        toggle?.addEventListener("click", () => setOpen(!open));
+        menu?.addEventListener("click", (e) => {
+          const link = e.target.closest("a");
+          if (link) setOpen(false);
+        });
+      });
+    </script>
+  </body>
+</html>
+
